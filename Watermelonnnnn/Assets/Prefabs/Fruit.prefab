@@ -135,32 +135,32 @@ MonoBehaviour:
     FruitName: 0
   chiefChance: 0.1
   fruitTypes:
-  - sprite: {fileID: 3286163911610860551, guid: 02d8841ad386f7c44bc8547169996e88, type: 3}
+  - sprite: {fileID: 21300000, guid: 37a29dd9b03e2f14f8e00158f8fd69c2, type: 3}
     finalScale: {x: 1, y: 1}
     score: 1
     FruitName: 0
-  - sprite: {fileID: 3286163911610860551, guid: 6250b863c807e334fb23e2c09ee8415c, type: 3}
+  - sprite: {fileID: 21300000, guid: 6ec15d0e20cc49141a946b810fbf19ef, type: 3}
     finalScale: {x: 1.1, y: 1.1}
     score: 2
     FruitName: 1
-  - sprite: {fileID: 3286163911610860551, guid: 8b6b19852c84a514aae0ae86cf7d0a53, type: 3}
+  - sprite: {fileID: 21300000, guid: 579093c0f0af3ca4a8d9561eabb9f81c, type: 3}
     finalScale: {x: 2, y: 2}
     score: 4
     FruitName: 2
-  - sprite: {fileID: 3286163911610860551, guid: 370e4648b1cf62f4697ddd915d345bf5, type: 3}
+  - sprite: {fileID: 21300000, guid: ade6c46eab7b551439ee37d7ab38c0f4, type: 3}
     finalScale: {x: 1, y: 1}
     score: 8
     FruitName: 3
-  - sprite: {fileID: 3286163911610860551, guid: f2035f99edea2e14d921d6d0c0ee2c97, type: 3}
+  - sprite: {fileID: 21300000, guid: 833aa7a215171f445bfeedb330849a25, type: 3}
     finalScale: {x: 2, y: 2}
     score: 16
     FruitName: 4
-  - sprite: {fileID: 3286163911610860551, guid: 602814e8225972145823f4129901592b, type: 3}
-    finalScale: {x: 1, y: 1}
+  - sprite: {fileID: 21300000, guid: 15e04f70051f07743ada5818fcf7d1d8, type: 3}
+    finalScale: {x: 2.2, y: 2.2}
     score: 32
     FruitName: 5
   Chief:
-    sprite: {fileID: 3286163911610860551, guid: 7891c67b7860d6f4da52862a21097dd1, type: 3}
+    sprite: {fileID: 21300000, guid: 14a69d9bfc8673b4e9766f8fb8152b71, type: 3}
     finalScale: {x: 1, y: 1}
     score: 0
     FruitName: 6

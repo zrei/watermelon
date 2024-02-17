@@ -7,9 +7,9 @@ using UnityEngine;
 public class RatJump : SpecialComponent
 {
     [SerializeField]
-    private float m_VerticalForce = 150;
+    private float m_VerticalForce = 900;
     [SerializeField]
-    private float m_HorizontalForce = 150;
+    private float m_HorizontalForce = 450;
     [SerializeField]
     private float m_JumpTimerMin = 0.5f;
     [SerializeField]
