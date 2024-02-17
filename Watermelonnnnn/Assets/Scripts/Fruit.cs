@@ -39,6 +39,8 @@ public class Fruit : MonoBehaviour
     public List<FruitTypeStruct> fruitTypes;
     public FruitTypeStruct Chief;
 
+    private SpriteRenderer m_SR;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +54,8 @@ public class Fruit : MonoBehaviour
             int randomType = UnityEngine.Random.Range(0, 2);
             SetFruitType(fruitTypes[randomType]);
         }
+
+        m_SR = GetComponent<SpriteRenderer>();
 
     }
 
@@ -111,11 +115,11 @@ public class Fruit : MonoBehaviour
     {
         if(transform.position.y < -10)
         {
-            if(fruitType.FruitName != Chief.FruitName)
+            if(fruitType.FruitName != Chief.FruitName && fruitType.FruitName != FruitNames.BOCCHI)
             {
                 GameManager.instance.AddPenalty();
             }
-
+            GlobalEvents.OnFuseEvent?.Invoke(gameObject);
             Destroy(gameObject); //Despawn and add penalty
         }
     }
@@ -134,6 +138,7 @@ public class Fruit : MonoBehaviour
 
         if(gameObject.transform.position.y >= collision.gameObject.transform.position.y)
         {
+            GlobalEvents.OnFuseEvent?.Invoke(collision.gameObject);
             Destroy(collision.gameObject);
             AdvanceNextTier();
         }
@@ -142,8 +147,8 @@ public class Fruit : MonoBehaviour
 
     private void AdvanceNextTier()
     {
-        
-        
+
+        m_SR.color = new Color(1, 1, 1); 
 
         for(int i = 0; i < fruitTypes.Count; i++ )
         {

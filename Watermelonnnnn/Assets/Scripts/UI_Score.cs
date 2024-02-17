@@ -11,6 +11,7 @@ public class UI_Score : MonoBehaviour
     private void Awake()
     {
         GlobalEvents.UpdateScoreEvent += UpdateScore;
+        GlobalEvents.UpdatePenaltyEvent += UpdatePenalty;
         m_Score.SetText("Score: " + 0);
         m_Penalty.SetText("Penalty: " + 0);
     }
@@ -18,6 +19,7 @@ public class UI_Score : MonoBehaviour
     private void OnDestroy()
     {
         GlobalEvents.UpdateScoreEvent -= UpdateScore;
+        GlobalEvents.UpdatePenaltyEvent -= UpdatePenalty;
     }
 
     private void UpdateScore(int score)
