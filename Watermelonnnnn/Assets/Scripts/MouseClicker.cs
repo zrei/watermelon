@@ -43,6 +43,9 @@ public class MouseClicker : MonoBehaviour
     private void LetGo()
     {
         // check later
+        SpecialComponent special = m_HeldObject.GetComponent<SpecialComponent>();
+        if (special != null)
+            special.ToggleCanPerformSpecial();
         m_HeldObject.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
         ClearHeld();
     }
@@ -56,6 +59,9 @@ public class MouseClicker : MonoBehaviour
         foreach (Collider2D c in objects)
             if (c.gameObject.CompareTag("Fruit"))
             {
+                SpecialComponent special = c.gameObject.GetComponent<SpecialComponent>();
+                if (special != null)
+                    special.ToggleCanPerformSpecial();
                 PickUp(c.gameObject);
                 break;
             }
