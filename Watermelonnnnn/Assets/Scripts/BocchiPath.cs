@@ -8,13 +8,13 @@ public class BocchiPath : ExplosionComponent
 {
     // must think about this later
     [SerializeField]
-    private Vector3 m_LeftCorner = new Vector3(-3.23f, -4.43f, 0);
+    private Vector3 m_LeftCorner = new Vector3(-2.6f, -4.43f, 0);
     [SerializeField]
-    private Vector3 m_RightCorner = new Vector3(3.85f, -4.43f, 0);
+    private Vector3 m_RightCorner = new Vector3(3.17f, -4.43f, 0);
     [SerializeField]
     private float m_MoveSpeed = 2;
     [SerializeField]
-    private float m_MinDistanceToCorner = 0.05f;
+    private float m_MinDistanceToCorner = 0.5f;
 
     private Vector3 m_CornerToMoveTowards;
     private bool m_ReachedCorner = false;
@@ -22,6 +22,7 @@ public class BocchiPath : ExplosionComponent
     protected override void Awake()
     {
         base.Awake();
+
         m_CornerToMoveTowards = SelectCorner();
     }
 
