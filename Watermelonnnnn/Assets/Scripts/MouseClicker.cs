@@ -7,6 +7,7 @@ public class MouseClicker : MonoBehaviour
     private bool m_IsHolding;
     private GameObject m_HeldObject;
     private Vector3 m_MousePosition;
+    private float m_PrevGravity;
 
     private void Awake()
     {
@@ -46,7 +47,7 @@ public class MouseClicker : MonoBehaviour
         SpecialComponent special = m_HeldObject.GetComponent<SpecialComponent>();
         if (special != null)
             special.ToggleCanPerformSpecial();
-        m_HeldObject.GetComponent<Rigidbody2D>().gravityScale = 1.0f;
+        m_HeldObject.GetComponent<Rigidbody2D>().gravityScale = m_PrevGravity;
         ClearHeld();
     }
 
@@ -71,6 +72,7 @@ public class MouseClicker : MonoBehaviour
     {
         m_IsHolding = true;
         m_HeldObject = gameObject;
+        m_PrevGravity = m_HeldObject.GetComponent<Rigidbody2D>().gravityScale;
         m_HeldObject.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
     }
 
