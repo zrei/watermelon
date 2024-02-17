@@ -58,10 +58,38 @@ public class Fruit : MonoBehaviour
 
     void SetFruitType(FruitTypeStruct type)
     {
+        if(fruitType.FruitName == FruitNames.BOCCHI)
+        {
+            //Remove Bocchi Componennt
+        }
+        else if(fruitType.FruitName == FruitNames.CHIEF)
+        {
+
+        }else if (fruitType.FruitName == FruitNames.RAT)
+        {
+
+        }
+
+
         fruitType = type;
         GetComponent<SpriteRenderer>().sprite = fruitType.sprite;
         StopAllCoroutines();
         StartCoroutine(GrowAnim());
+
+        //Add the new Component
+
+        if (fruitType.FruitName == FruitNames.BOCCHI)
+        {
+            //Remove Bocchi Componennt
+        }
+        else if (fruitType.FruitName == FruitNames.CHIEF)
+        {
+
+        }
+        else if (fruitType.FruitName == FruitNames.RAT)
+        {
+
+        }
     }
 
     // Update is called once per frame
@@ -104,7 +132,7 @@ public class Fruit : MonoBehaviour
                 if( i + 1 == fruitTypes.Count) 
                 {
 
-                    //Destroy(gameObject); // 2 Sharks, disappear
+                    Destroy(gameObject); // 2 Sharks, disappear
                 }
                 else
                 {
