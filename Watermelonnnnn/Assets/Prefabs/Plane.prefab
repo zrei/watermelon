@@ -110,7 +110,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 3286163911610860551, guid: 085840a14f979f44a9eb2b16e9482fd2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -186,8 +186,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c4d907453e224d4d894d0fbffbdbb0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Fruit: {fileID: 0}
-  m_SpawnPoint: {fileID: 0}
+  m_Fruit: {fileID: 3610889140190736860, guid: 037618832a946dc4794f7f49e225c31e, type: 3}
+  m_SpawnPoint: {fileID: 210241247313762099}
   m_SpawnCountdown: 3
 --- !u!61 &-9130298601626200348
 BoxCollider2D:

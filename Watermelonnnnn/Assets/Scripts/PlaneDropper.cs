@@ -36,7 +36,7 @@ public class PlaneDropper : MonoBehaviour
 
     private void SpawnFruit()
     {
-        //Instantiate(m_Fruit, m_SpawnPoint.localPosition, m_SpawnPoint.localRotation);
+        Instantiate(m_Fruit, m_SpawnPoint.position, m_SpawnPoint.transform.rotation);
     }
 
 }

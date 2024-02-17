@@ -8,18 +8,17 @@ public class Fruit : MonoBehaviour
 
     public float growTime = 0.2f;
     public Vector2 initialScale = new Vector2(0.1f, 0.1f);
-
     
     public FruitTypeStruct fruitType;
 
     public float chiefChance = 0.1f;
 
     [System.Serializable]
-    public struct FruitTypeStruct
+    public class FruitTypeStruct
     {
         public Sprite sprite;
         public Vector2 finalScale;
-        public int score;
+        public int score = 1;
         public FruitNames FruitName;
 
     }
@@ -61,12 +60,18 @@ public class Fruit : MonoBehaviour
         if(fruitType.FruitName == FruitNames.BOCCHI)
         {
             //Remove Bocchi Componennt
+            Destroy(GetComponent<BocchiPath>());
         }
         else if(fruitType.FruitName == FruitNames.CHIEF)
         {
 
         }else if (fruitType.FruitName == FruitNames.RAT)
         {
+            Destroy(GetComponent<RatJump>());
+        }
+        else if (fruitType.FruitName == FruitNames.SHARK)
+        {
+            GetComponent<Rigidbody2D>().gravityScale = 1;
 
         }
 
@@ -80,7 +85,8 @@ public class Fruit : MonoBehaviour
 
         if (fruitType.FruitName == FruitNames.BOCCHI)
         {
-            //Remove Bocchi Componennt
+            //Add Bocchi Componennt
+            gameObject.AddComponent<BocchiPath>();
         }
         else if (fruitType.FruitName == FruitNames.CHIEF)
         {
@@ -88,7 +94,11 @@ public class Fruit : MonoBehaviour
         }
         else if (fruitType.FruitName == FruitNames.RAT)
         {
-
+            gameObject.AddComponent<RatJump>();
+        }
+        else if (fruitType.FruitName == FruitNames.SHARK)
+        {
+            GetComponent<Rigidbody2D>().gravityScale = 0;
         }
     }
 
@@ -97,6 +107,11 @@ public class Fruit : MonoBehaviour
     {
         if(transform.position.y < -10)
         {
+            if(fruitType.FruitName != Chief.FruitName)
+            {
+                GameManager.instance.AddPenalty();
+            }
+
             Destroy(gameObject); //Despawn and add penalty
         }
     }
@@ -108,13 +123,12 @@ public class Fruit : MonoBehaviour
         {
             return;
         }
-        print("collision"); 
         if ((fruitType.FruitName == Chief.FruitName )|| fruitType.FruitName != collision.gameObject.GetComponent<Fruit>().fruitType.FruitName)
         {
             return; //Chief cannot merge, not the same fruit cant merge
         }
 
-        if(gameObject.transform.position.y < collision.gameObject.transform.position.y)
+        if(gameObject.transform.position.y >= collision.gameObject.transform.position.y)
         {
             Destroy(collision.gameObject);
         }
@@ -123,7 +137,8 @@ public class Fruit : MonoBehaviour
 
     private void AdvanceNextTier()
     {
-        //TODO: Add Score
+        
+        
 
         for(int i = 0; i < fruitTypes.Count; i++ )
         {
@@ -131,11 +146,13 @@ public class Fruit : MonoBehaviour
             {
                 if( i + 1 == fruitTypes.Count) 
                 {
-
-                    Destroy(gameObject); // 2 Sharks, disappear
+                 AddScore(2 * fruitType.score);
+                 Destroy(gameObject); // 2 Sharks, disappear
                 }
                 else
                 {
+
+                    AddScore(fruitType.score);
                     SetFruitType(fruitTypes[i + 1]);
                     return;
                 }
@@ -144,6 +161,11 @@ public class Fruit : MonoBehaviour
         
     }
 
+
+    public void AddScore(int amt)
+    {
+        GameManager.instance.AddScore(amt);
+    }
     public IEnumerator GrowAnim()
     {
         transform.localScale = initialScale;

@@ -7,16 +7,16 @@ using UnityEngine;
 public class RatJump : MonoBehaviour
 {
     [SerializeField]
-    private float m_VerticalForce;
+    private float m_VerticalForce = 150;
     [SerializeField]
-    private float m_HorizontalForce;
+    private float m_HorizontalForce = 150;
     [SerializeField]
-    private float m_JumpTimerMin;
+    private float m_JumpTimerMin = 0.5f;
     [SerializeField]
-    private float m_JumpTimerMax;
+    private float m_JumpTimerMax = 1.5f;
     [SerializeField]
     [Range(0, 1)]
-    private float m_JumpChance;
+    private float m_JumpChance = 0.5f;
 
     private Rigidbody2D m_RB;
     private float m_JumpTimer;

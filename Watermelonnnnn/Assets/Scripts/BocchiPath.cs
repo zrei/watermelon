@@ -9,21 +9,21 @@ public class BocchiPath : MonoBehaviour
 
     // must think about this later
     [SerializeField]
-    private Vector3 m_LeftCorner = new Vector3(0, 0, 0);
+    private Vector3 m_LeftCorner = new Vector3(-3.19f, -1.72f, 0);
     [SerializeField]
-    private Vector3 m_RightCorner = new Vector3(0, 0, 0);
+    private Vector3 m_RightCorner = new Vector3(3.89f, -1.72f, 0);
     [SerializeField]
-    private float m_MoveSpeed;
+    private float m_MoveSpeed = 10;
     [SerializeField]
-    private float m_ExplosionTimerMin;
+    private float m_ExplosionTimerMin = 0.5f;
     [SerializeField]
-    private float m_ExplosionTimerMax;
+    private float m_ExplosionTimerMax = 1.5f;
     [SerializeField]
-    private float m_MinDistanceToCorner;
+    private float m_MinDistanceToCorner = 0.05f;
     [SerializeField]
-    private float m_ExplosionRadius;
+    private float m_ExplosionRadius = 20;
     [SerializeField]
-    private float m_ExplosionForce;
+    private float m_ExplosionForce = 100;
     [SerializeField]
     private LayerMask m_AffectedLayers;
 
@@ -38,6 +38,7 @@ public class BocchiPath : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        m_AffectedLayers = LayerMask.NameToLayer("Fruit");
     }
 
     void Awake()
@@ -59,6 +60,8 @@ public class BocchiPath : MonoBehaviour
                 Collider2D[] m_Objects = Physics2D.OverlapCircleAll(m_RB.position, m_ExplosionRadius, m_AffectedLayers);
                 foreach (Collider2D o in m_Objects)
                 {
+                    if (!o.gameObject.GetComponent<Rigidbody2D>()) return;
+
                     Vector2 otherPosition = new Vector2(o.gameObject.transform.localPosition.x, o.gameObject.transform.localPosition.y);
                     Vector2 directionVector = (otherPosition - m_RB.position).normalized;
                     o.gameObject.GetComponent<Rigidbody2D>().AddForce(directionVector * m_ExplosionForce);
