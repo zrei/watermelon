@@ -23,7 +23,6 @@ public class PlaneMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(m_RB.position + new Vector2(m_Direction, 0) * m_MoveSpeed * Time.deltaTime);
         m_RB.MovePosition(m_RB.position + new Vector2(m_Direction, 0) * m_MoveSpeed * Time.deltaTime);
     }
 

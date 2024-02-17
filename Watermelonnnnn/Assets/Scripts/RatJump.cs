@@ -21,6 +21,8 @@ public class RatJump : MonoBehaviour
     private Rigidbody2D m_RB;
     private float m_JumpTimer;
 
+    private bool m_CanJump = true;
+
     private void Start()
     {
         m_RB = GetComponent<Rigidbody2D>();
@@ -34,6 +36,9 @@ public class RatJump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!m_CanJump)
+            return;
+
         if (m_JumpTimer > 0)
         {
             m_JumpTimer -= Time.deltaTime;
@@ -53,7 +58,7 @@ public class RatJump : MonoBehaviour
             return;
 
         Debug.Log("JUMP");
-        
+
         switch(UnityEngine.Random.Range(0, 2))
         {
             case 0:
@@ -70,5 +75,11 @@ public class RatJump : MonoBehaviour
     private void SetTimer()
     {
         m_JumpTimer = UnityEngine.Random.Range(m_JumpTimerMin, m_JumpTimerMax);
+    }
+
+    public void ToggleCanJump()
+    {
+        m_CanJump = !m_CanJump;
+        SetTimer();
     }
 }
