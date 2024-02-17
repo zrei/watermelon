@@ -8,9 +8,11 @@ public class MouseClicker : MonoBehaviour
     private GameObject m_HeldObject;
     private Vector3 m_MousePosition;
     private float m_PrevGravity;
+    private Camera m_Camera;
 
     private void Awake()
     {
+        m_Camera = Camera.main;
         GlobalEvents.OnExplodeEvent += CheckHeld;
     }
 
@@ -28,7 +30,7 @@ public class MouseClicker : MonoBehaviour
 
         if (m_IsHolding)
         {
-            Vector3 worldPoint = Camera.main.ScreenToWorldPoint(m_MousePosition);
+            Vector3 worldPoint = m_Camera.ScreenToWorldPoint(m_MousePosition);
             m_HeldObject.transform.position = new Vector3(worldPoint.x, worldPoint.y, 0);
         }
     }
@@ -54,7 +56,7 @@ public class MouseClicker : MonoBehaviour
     private void TryPickUp()
     {
         Debug.Log("Try pick up");
-        Vector3 worldPoint = Camera.main.ScreenToWorldPoint(m_MousePosition);
+        Vector3 worldPoint = m_Camera.ScreenToWorldPoint(m_MousePosition);
         Collider2D[] objects = Physics2D.OverlapPointAll(worldPoint);
         
         foreach (Collider2D c in objects)

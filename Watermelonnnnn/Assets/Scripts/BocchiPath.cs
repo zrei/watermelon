@@ -34,6 +34,8 @@ public class BocchiPath : ExplosionComponent
         } else if (m_CanPerformSpecial)
         {
             //Debug.Log(Vector3.MoveTowards(m_RB.position, m_CornerToMoveTowards, m_MoveSpeed * Time.deltaTime));
+            //transform.position = Vector3.MoveTowards(m_RB.position, m_CornerToMoveTowards, m_MoveSpeed * Time.deltaTime);
+            
             m_RB.MovePosition(Vector3.MoveTowards(m_RB.position, m_CornerToMoveTowards, m_MoveSpeed * Time.deltaTime));
             if (Vector3.Distance(m_RB.position, m_CornerToMoveTowards) <= m_MinDistanceToCorner)
                 m_ReachedCorner = true;
