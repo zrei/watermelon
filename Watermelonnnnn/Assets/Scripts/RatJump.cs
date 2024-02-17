@@ -4,7 +4,7 @@ using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class RatJump : MonoBehaviour
+public class RatJump : SpecialComponent
 {
     [SerializeField]
     private float m_VerticalForce = 150;
@@ -21,8 +21,6 @@ public class RatJump : MonoBehaviour
     private Rigidbody2D m_RB;
     private float m_JumpTimer;
 
-    private bool m_CanJump = true;
-
     private void Start()
     {
         m_RB = GetComponent<Rigidbody2D>();
@@ -36,7 +34,7 @@ public class RatJump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!m_CanJump)
+        if (!m_CanPerformSpecial)
             return;
 
         if (m_JumpTimer > 0)
@@ -77,9 +75,9 @@ public class RatJump : MonoBehaviour
         m_JumpTimer = UnityEngine.Random.Range(m_JumpTimerMin, m_JumpTimerMax);
     }
 
-    public void ToggleCanJump()
+    public override void ToggleCanPerformSpecial()
     {
-        m_CanJump = !m_CanJump;
+        base.ToggleCanPerformSpecial();
         SetTimer();
     }
 }

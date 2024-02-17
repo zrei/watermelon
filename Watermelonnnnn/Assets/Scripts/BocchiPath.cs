@@ -4,73 +4,34 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class BocchiPath : MonoBehaviour
+public class BocchiPath : ExplosionComponent
 {
-
     // must think about this later
     [SerializeField]
-    private Vector3 m_LeftCorner = new Vector3(-3.19f, -1.72f, 0);
+    private Vector3 m_LeftCorner = new Vector3(0, 0, 0);
     [SerializeField]
-    private Vector3 m_RightCorner = new Vector3(3.89f, -1.72f, 0);
+    private Vector3 m_RightCorner = new Vector3(0, 0, 0);
     [SerializeField]
-    private float m_MoveSpeed = 10;
+    private float m_MoveSpeed;
     [SerializeField]
-    private float m_ExplosionTimerMin = 0.5f;
-    [SerializeField]
-    private float m_ExplosionTimerMax = 1.5f;
-    [SerializeField]
-    private float m_MinDistanceToCorner = 0.05f;
-    [SerializeField]
-    private float m_ExplosionRadius = 20;
-    [SerializeField]
-    private float m_ExplosionForce = 100;
-    [SerializeField]
-    private LayerMask m_AffectedLayers;
-
-    private Rigidbody2D m_RB;
+    private float m_MinDistanceToCorner;
 
     private Vector3 m_CornerToMoveTowards;
     private bool m_ReachedCorner = false;
-    private float m_ExplosionTimer; 
 
-    private bool m_CanMove = true;
-
-    // Start is called before the first frame update
-    void Start()
+    protected override void Awake()
     {
-        m_AffectedLayers = LayerMask.NameToLayer("Fruit");
-    }
-
-    void Awake()
-    {
-        m_RB = GetComponent<Rigidbody2D>();
+        base.Awake();
         m_CornerToMoveTowards = SelectCorner();
-        m_ExplosionTimer = UnityEngine.Random.Range(m_ExplosionTimerMin, m_ExplosionTimerMax);
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         if (m_ReachedCorner)
         {
-            Debug.Log("Doing explosions");
-            m_ExplosionTimer -= Time.deltaTime;
-            if (m_ExplosionTimer <= 0)
-            {
-                Collider2D[] m_Objects = Physics2D.OverlapCircleAll(m_RB.position, m_ExplosionRadius, m_AffectedLayers);
-                foreach (Collider2D o in m_Objects)
-                {
-                    if (!o.gameObject.GetComponent<Rigidbody2D>()) return;
-
-                    Vector2 otherPosition = new Vector2(o.gameObject.transform.localPosition.x, o.gameObject.transform.localPosition.y);
-                    Vector2 directionVector = (otherPosition - m_RB.position).normalized;
-                    o.gameObject.GetComponent<Rigidbody2D>().AddForce(directionVector * m_ExplosionForce);
-                }
-                // explode radius... something
-                Destroy(gameObject);
-            }
-            // flash red coroutine or something idk
-        } else if (m_CanMove)
+            base.Update();
+        } else if (m_CanPerformSpecial)
         {
             //Debug.Log(Vector3.MoveTowards(m_RB.position, m_CornerToMoveTowards, m_MoveSpeed * Time.deltaTime));
             m_RB.MovePosition(Vector3.MoveTowards(m_RB.position, m_CornerToMoveTowards, m_MoveSpeed * Time.deltaTime));
@@ -87,8 +48,4 @@ public class BocchiPath : MonoBehaviour
             return m_RightCorner;
     }
 
-    public void ToggleCanMove()
-    {
-        m_CanMove = !m_CanMove;
-    }
 }
