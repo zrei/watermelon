@@ -73,6 +73,7 @@ public class Fruit : MonoBehaviour
         else if (fruitType.FruitName == FruitNames.SHARK)
         {
             GetComponent<Rigidbody2D>().gravityScale = 1;
+            GetComponent<Rigidbody2D>().mass = 1;
 
         }
 
@@ -101,6 +102,7 @@ public class Fruit : MonoBehaviour
         else if (fruitType.FruitName == FruitNames.SHARK)
         {
             GetComponent<Rigidbody2D>().gravityScale = 0;
+            GetComponent<Rigidbody2D>().mass = 0;
         }
     }
 
