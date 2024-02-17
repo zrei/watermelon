@@ -4,12 +4,15 @@ using TMPro;
 public class UI_Score : MonoBehaviour
 {
     [SerializeField]
-    private TMP_Text m_Text;
+    private TMP_Text m_Score;
+    [SerializeField]
+    private TMP_Text m_Penalty;
 
     private void Awake()
     {
         GlobalEvents.UpdateScoreEvent += UpdateScore;
-        m_Text.SetText("Score: " + 0);
+        m_Score.SetText("Score: " + 0);
+        m_Penalty.SetText("Penalty: " + 0);
     }
 
     private void OnDestroy()
@@ -19,6 +22,11 @@ public class UI_Score : MonoBehaviour
 
     private void UpdateScore(int score)
     {
-        m_Text.SetText("Score: " + score);
+        m_Score.SetText("Score: " + score);
+    }
+
+    private void UpdatePenalty(int penalty)
+    {
+        m_Penalty.SetText("Penalty: " + penalty);
     }
 }
