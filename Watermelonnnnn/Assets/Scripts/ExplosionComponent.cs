@@ -3,13 +3,13 @@ using UnityEngine;
 public class ExplosionComponent : SpecialComponent
 {
     [SerializeField]
-    private float m_ExplosionTimerMin;
+    private float m_ExplosionTimerMin = 5;
     [SerializeField]
-    private float m_ExplosionTimerMax;
+    private float m_ExplosionTimerMax = 7;
     [SerializeField]
-    private float m_ExplosionRadius;
+    private float m_ExplosionRadius = 3;
     [SerializeField]
-    private float m_ExplosionForce;
+    private float m_ExplosionForce = 200;
     [SerializeField]
     private LayerMask m_AffectedLayers;
 
@@ -18,6 +18,7 @@ public class ExplosionComponent : SpecialComponent
 
     protected virtual void Awake()
     {
+        m_AffectedLayers = LayerMask.NameToLayer("Fruit");
         m_RB = GetComponent<Rigidbody2D>();
         m_ExplosionTimer = UnityEngine.Random.Range(m_ExplosionTimerMin, m_ExplosionTimerMax);
     }

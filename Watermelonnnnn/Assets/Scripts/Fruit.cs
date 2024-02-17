@@ -90,7 +90,7 @@ public class Fruit : MonoBehaviour
         }
         else if (fruitType.FruitName == FruitNames.CHIEF)
         {
-
+            gameObject.AddComponent<ExplosionComponent>();
         }
         else if (fruitType.FruitName == FruitNames.RAT)
         {
