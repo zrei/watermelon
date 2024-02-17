@@ -29,7 +29,7 @@ public class PlaneMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // some check for the waypoint whatever
-        m_Direction = -m_Direction; // turn around
+        if (other.CompareTag("Waypoint"))
+            m_Direction = -m_Direction; // turn around
     }
 }
