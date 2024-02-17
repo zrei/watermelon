@@ -14,11 +14,13 @@ public class MouseClicker : MonoBehaviour
     {
         m_Camera = Camera.main;
         GlobalEvents.OnExplodeEvent += CheckHeld;
+        GlobalEvents.OnFuseEvent += CheckHeld;
     }
 
     private void OnDestroy()
     {
         GlobalEvents.OnExplodeEvent -= CheckHeld;
+        GlobalEvents.OnFuseEvent -= CheckHeld;
     }
 
     private void Update()

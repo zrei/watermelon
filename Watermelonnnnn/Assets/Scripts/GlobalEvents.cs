@@ -7,4 +7,5 @@ public class GlobalEvents
 {
     public static IntEvent UpdateScoreEvent;
     public static GameObjectEvent OnExplodeEvent;
+    public static GameObjectEvent OnFuseEvent;
 }
