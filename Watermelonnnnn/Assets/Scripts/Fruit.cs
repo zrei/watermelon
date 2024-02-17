@@ -61,6 +61,7 @@ public class Fruit : MonoBehaviour
         {
             //Remove Bocchi Componennt
             Destroy(GetComponent<BocchiPath>());
+            gameObject.GetComponent<Rigidbody2D>().mass = 1;
         }
         else if(fruitType.FruitName == FruitNames.CHIEF)
         {
@@ -87,6 +88,7 @@ public class Fruit : MonoBehaviour
         {
             //Add Bocchi Componennt
             gameObject.AddComponent<BocchiPath>();
+            gameObject.GetComponent<Rigidbody2D>().mass = 10;
         }
         else if (fruitType.FruitName == FruitNames.CHIEF)
         {
@@ -131,8 +133,9 @@ public class Fruit : MonoBehaviour
         if(gameObject.transform.position.y >= collision.gameObject.transform.position.y)
         {
             Destroy(collision.gameObject);
+            AdvanceNextTier();
         }
-        AdvanceNextTier();
+       
     }
 
     private void AdvanceNextTier()

@@ -9,11 +9,11 @@ public class ExplosionComponent : SpecialComponent
     [SerializeField]
     private float m_ExplosionRadius = 3;
     [SerializeField]
-    private float m_ExplosionForce = 200;
+    private float m_ExplosionForce = 2000;
     [SerializeField]
     private LayerMask m_AffectedLayers;
     [SerializeField]
-    private float m_FlashTimerInterval;
+    private float m_FlashTimerInterval = 0.3f;
 
     private float m_ExplosionTimer;
     protected Rigidbody2D m_RB;
@@ -22,7 +22,7 @@ public class ExplosionComponent : SpecialComponent
 
     protected virtual void Awake()
     {
-        m_AffectedLayers = LayerMask.NameToLayer("Fruit");
+        m_AffectedLayers += LayerMask.GetMask("Fruit");
         m_RB = GetComponent<Rigidbody2D>();
         m_SR = GetComponent<SpriteRenderer>();
         m_ExplosionTimer = UnityEngine.Random.Range(m_ExplosionTimerMin, m_ExplosionTimerMax);

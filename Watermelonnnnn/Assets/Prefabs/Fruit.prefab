@@ -140,11 +140,11 @@ MonoBehaviour:
     score: 1
     FruitName: 0
   - sprite: {fileID: 3286163911610860551, guid: 6250b863c807e334fb23e2c09ee8415c, type: 3}
-    finalScale: {x: 1, y: 1}
+    finalScale: {x: 1.1, y: 1.1}
     score: 2
     FruitName: 1
   - sprite: {fileID: 3286163911610860551, guid: 8b6b19852c84a514aae0ae86cf7d0a53, type: 3}
-    finalScale: {x: 1, y: 1}
+    finalScale: {x: 2, y: 2}
     score: 4
     FruitName: 2
   - sprite: {fileID: 3286163911610860551, guid: 370e4648b1cf62f4697ddd915d345bf5, type: 3}
@@ -152,10 +152,10 @@ MonoBehaviour:
     score: 8
     FruitName: 3
   - sprite: {fileID: 3286163911610860551, guid: f2035f99edea2e14d921d6d0c0ee2c97, type: 3}
-    finalScale: {x: 1, y: 1}
+    finalScale: {x: 2, y: 2}
     score: 16
     FruitName: 4
-  - sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  - sprite: {fileID: 3286163911610860551, guid: 602814e8225972145823f4129901592b, type: 3}
     finalScale: {x: 1, y: 1}
     score: 32
     FruitName: 5
