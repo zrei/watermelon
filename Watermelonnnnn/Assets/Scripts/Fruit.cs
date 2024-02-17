@@ -152,6 +152,7 @@ public class Fruit : MonoBehaviour
                 if( i + 1 == fruitTypes.Count) 
                 {
                  AddScore(2 * fruitType.score);
+                 GlobalEvents.OnFuseEvent?.Invoke(gameObject);
                  Destroy(gameObject); // 2 Sharks, disappear
                 }
                 else
